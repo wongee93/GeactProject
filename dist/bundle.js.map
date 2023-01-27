@@ -1,0 +1,1 @@
+{"version":3,"file":"bundle.js","mappings":";;;;;;AAAa;AACb;AACA","sources":["webpack://geactproject/./src/index.ts"],"sourcesContent":["\"use strict\";\n// <div>Hello ddochi</div>\n// document.createElement()\n"],"names":[],"sourceRoot":""}

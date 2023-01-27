@@ -1,5 +1,2 @@
-function Add(a: number, b: number) {
-    return a + b;
-}
-
-console.log(Add(2, 5));
+// <div>Hello ddochi</div>
+// document.createElement()
