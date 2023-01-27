@@ -3,7 +3,7 @@ const Geact = {
     render
 }
 
-function createElement(type: string, props: object, children: any) {
+function createElement(type: string, props: object, children: any[]) {
     return {
         type,
         props: {

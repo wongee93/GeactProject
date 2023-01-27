@@ -5,31 +5,25 @@ module.exports = {
         path: path.resolve(__dirname, "dist"),
         filename: 'bundle.js',
     },
+    devtool: "source-map",
     module: {
         rules: [
             {
-                test: /\.ts|\.tsx?$/,
-                include: [
-                    path.resolve(__dirname, "src/ts")
-                ],
+                test: /\.(ts|js)x?$/,
                 exclude: /node_modules/,
                 use: [
                     {
                         loader: "babel-loader",
                         options: {
-                            presets: ["@babel/preset-react", '@babel/preset-typescript']
+                            presets: ["@babel/preset-react", "@babel/preset-typescript"]
                         }
                     },
-                    {
-                        loader: "ts-loader"
-                    }
                 ],
-            }
-        ]
+            },
+        ],
     },
     resolve: {
         extensions: ['.ts', '.tsx', '.js']
     },
-    devtool: "source-map",
     mode: "development"
 }
