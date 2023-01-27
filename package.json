@@ -2,9 +2,10 @@
   "name": "geactproject",
   "version": "1.0.0",
   "description": "wongee geact project",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src -w -d dist"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,17 @@
   "bugs": {
     "url": "https://github.com/wongee93/GeactProject/issues"
   },
-  "homepage": "https://github.com/wongee93/GeactProject#readme"
+  "homepage": "https://github.com/wongee93/GeactProject#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.20.7",
+    "@babel/core": "^7.20.12",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-react": "^7.18.6",
+    "@babel/preset-typescript": "^7.18.6",
+    "ts-node": "^10.9.1"
+  },
+  "dependencies": {
+    "typescript": "^4.9.4"
+  }
 }
