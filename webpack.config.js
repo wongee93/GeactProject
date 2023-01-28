@@ -10,6 +10,9 @@ module.exports = {
         rules: [
             {
                 test: /\.(ts|js)x?$/,
+                include: [
+                    path.resolve(__dirname, "src")
+                ],
                 exclude: /node_modules/,
                 use: [
                     {

@@ -13,12 +13,16 @@ var Geact = {
   createElement: createElement,
   render: render
 };
-function createElement(type, props, children) {
+function createElement(type, props) {
+  for (var _len = arguments.length, children = new Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+    children[_key - 2] = arguments[_key];
+  }
+  var childrenArray = Array.isArray(children) ? children : [children];
   return {
     type: type,
     props: _objectSpread(_objectSpread({}, props), {}, {
-      children: children.map(function (child) {
-        _typeof(child) === "object" ? child : createTextElement(child);
+      children: childrenArray.map(function (child) {
+        return _typeof(child) === "object" ? child : createTextElement(child);
       })
     })
   };
@@ -27,7 +31,7 @@ function createTextElement(text) {
   return {
     type: "TextElement",
     props: {
-      value: text,
+      nodeValue: text,
       children: []
     }
   };
@@ -38,7 +42,11 @@ function render(element, container) {
     return key !== "children";
   };
   Object.keys(element.props).filter(isProperty).forEach(function (name) {
-    dom.setAttribute(name, element.props[name]);
+    if (name === 'style') {
+      Object.assign(dom.style, element.props[name]);
+    } else {
+      dom[name] = element.props[name];
+    }
   });
   element.props.children.forEach(function (child) {
     return render(child, dom);

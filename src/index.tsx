@@ -3,13 +3,18 @@ const Geact = {
     render
 }
 
-function createElement(type: string, props: object, children: any[]) {
+function createElement(type: string, props: object, ...children: any[]) {
+    const childrenArray = Array.isArray(children) ? children : [children];
     return {
         type,
         props: {
             ...props,
-            children: children.map((child: any) => {
-                typeof child === "object" ? child : createTextElement(child)
+            children: childrenArray.map((child: any) => {
+                return (
+                    typeof child === "object"
+                        ? child
+                        : createTextElement(child)
+                )
             })
         }
     }
@@ -19,7 +24,7 @@ function createTextElement(text: string) {
     return {
         type: "TextElement",
         props: {
-            value: text,
+            nodeValue: text,
             children: []
         }
     }
@@ -34,7 +39,11 @@ function render(element: any, container: any) {
     Object.keys(element.props)
         .filter(isProperty)
         .forEach(name => {
-            dom.setAttribute(name, element.props[name])
+            if (name === 'style') {
+                Object.assign(dom.style, element.props[name])
+            } else {
+                dom[name] = element.props[name]
+            }
         })
 
     element.props.children.forEach((child: any) =>
@@ -43,7 +52,6 @@ function render(element: any, container: any) {
 
     container.appendChild(dom)
 }
-
 
 /** @jsx Geact.createElement */
 const element = (
